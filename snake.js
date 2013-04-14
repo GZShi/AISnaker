@@ -68,6 +68,14 @@ function game () {
 		}
 	}
 
+	this.getDirection = function () {
+		return this.direction;
+	}
+
+	this.getSnakeLength = function () {
+		return this.bodyArray.length;
+	}
+
 	this.getFoodRelativePos = function (pos) {
 		var rx = this.food.x - pos.x;
 		var ry = this.food.y - pos.y;
@@ -241,6 +249,12 @@ function main() {
 			$("p#info").text('Game Over');
 			return ;
 		}
+		if(snakeGame.getSnakeLength() >= 623) {
+			alive = false;
+			clearInterval(intervalId);
+			$("p#info").text('Undirectlookable!!');
+			return ;
+		}
 		if(command.length <= 0) {
 			if(typeof userAI != "function")
 				aiFunction(snakeGame, command);
@@ -252,10 +266,10 @@ function main() {
 					var info = "你的代码有错误，请修正后重试！\n";
 					info += "错误信息：" + err;
 					alert(info);
-
 				}
 			}
 		}
+		command = command.join("").split("");
 		snakeGame.changeDirection(command.length <= 0 ? ' ' : command.shift());
 	}
 

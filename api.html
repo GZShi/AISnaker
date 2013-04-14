@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AISnakeDoc</title>
+  <meta charset="UTF-8">
+    <style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style></head><body><h1 id="ai">AI贪吃蛇说明</h1>
+
+<p>作者：<a href="http://lovep.me">GZShi</a> <br />
+版本：1.0.0 <br />
+日期：2013/04/14 <br />
+邮箱：s@lovep.me  </p>
+
+<h3>概述</h3>
+
+<p>　　控制贪吃蛇移动的命令有“前进”、“向左”、“向右”三个，贪吃蛇每向前走一步都会从命令队列中取出一个命令，根据命令来决定下一步是继续前进还是向左或向右移动一格。在上述命令队列为空时，游戏会请求AI函数发出新的指令，你需要做的就是编写这个AI函数，使得贪吃蛇在这个函数的驱使下尽可能地吃到更多食物。如果你的AI函数没有更新这个命令队列，则贪吃蛇会一直向前，直到游戏结束。  </p>
+
+<h3 id="-2">开发接口</h3>
+
+<h4 id="-3">你需要修改的函数</h4>
+
+<blockquote>
+  <p>function userAI(GAME, CMD) { <br />
+    // YOUR CODE <br />
+  }  </p>
+</blockquote>
+
+<p>　　在这个函数中，参数GAME用于获取游戏的状态信息，参数CMD是需要修改的命令队列。  </p>
+
+<h4 id="-4">给命令队列添加命令</h4>
+
+<blockquote>
+  <p>CMD.push(direction)  </p>
+</blockquote>
+
+<p>　　direction应该是一个string类型，当direction=='l'时，表示把一个向左命令入队，当direction=='r'时，表示把一个向右的命令入队，如果不是上述两种情况则表示把一个向前的命令入队。该参数区分大小写。如果一次要把多个命令入队，例如需要向左转向3次、向前进4步、向右转向2次，则可以采取下面的方法一次入队  </p>
+
+<blockquote>
+  <p>CMD.push('lll    rr');</p>
+</blockquote>
+
+<h4 id="-5">获取游戏状态</h4>
+
+<h5 id="1">1 获取蛇的头部</h5>
+
+<blockquote>
+  <p>GAME.getSnakeHeader();</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+无 <br />
+<code>返回值</code> <br />
+蛇头部的位置结构体，包含x坐标和y坐标。例如<code>{x:0, y:0}</code></p>
+
+<h5 id="2">2 获取蛇头部往某个方向前进一步的新坐标</h5>
+
+<blockquote>
+  <p>GAME.getNextHeader(direction);</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+direction: 前进方向。可以是'l'、'r'这样的相对方向，也可以是0、1、2、3这样的绝对方向（0、1、2、3分别表示向西、北、东、南前进）。 <br />
+<code>返回值</code> <br />
+蛇头部的位置结构体，包含x坐标和y坐标。</p>
+
+<h5 id="3">3 获取食物坐标</h5>
+
+<blockquote>
+  <p>GAME.getFoodPosition();</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+无 <br />
+<code>返回值</code> <br />
+食物的位置结构体，包含x坐标和y坐标。</p>
+
+<h5 id="4">4 获取食物相对于某个点的相对坐标</h5>
+
+<blockquote>
+  <p>GAME.getFoodRelativePos(position);</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+position:一个位置结构体，需要计算相对坐标的点 <br />
+<code>返回值</code> <br />
+一个相对距离结构体，包含x距离和y距离。其中x距离是以蛇的当前方向的“左”为正，y距离以蛇的当前前进方向为正。 </p>
+
+<h5 id="5">5 获取蛇的方向</h5>
+
+<blockquote>
+  <p>GAME.getDirection();</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+无 <br />
+<code>返回值</code> <br />
+蛇的绝对方向，返回值0、1、2、3分别表示西、北、东、南。</p>
+
+<h5 id="6">6 获取蛇的长度</h5>
+
+<blockquote>
+  <p>GAME.getSnakeLength();</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+无 <br />
+<code>返回值</code> <br />
+整数类型，蛇的长度。</p>
+
+<h5 id="7">7 获取当前整个地图状态</h5>
+
+<blockquote>
+  <p>GAME.getMap();</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+无 <br />
+<code>返回值</code> <br />
+一个二维数组； <br />
+为0的元素代表该位置为空白； <br />
+为-1的元素代表该位置是食物； <br />
+>=1的元素代表该位置是蛇的身体，其中最大的代表头部，1代表尾巴。  </p>
+
+<h4 id="-6">碰撞检测相关</h4>
+
+<h5 id="8">8 检测撞墙</h5>
+
+<blockquote>
+  <p>GAME.checkHitWall(position);</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+position:待检测的位置坐标。 <br />
+<code>返回值</code> <br />
+碰撞返回true，否则返回false</p>
+
+<h5 id="9">9 检测碰撞蛇身体</h5>
+
+<blockquote>
+  <p>GAME.checkHitSnakeBody(position);</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+position:待检测的位置坐标。 <br />
+<code>返回值</code> <br />
+接触返回true，否则返回false。注：不会与蛇头和蛇尾进行测试。</p>
+
+<h5 id="10">10 检测某坐标是否是食物</h5>
+
+<blockquote>
+  <p>GAME.checkHitFood(position);</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+position:待检测的位置坐标。 <br />
+<code>返回值</code> <br />
+是食物返回true，否则返回false。</p>
+</body></html>
