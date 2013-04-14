@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>贪吃蛇v5 - AI β</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="snake.js"></script>
+	<link rel="stylesheet" type="text/css" href="snake.css">
+</head>
+<body>
+	<div id='canvasBoard' width="500px" height="500px">
+		<canvas id="main_canvas" height="500" width="500" style="display: "></canvas>
+	</div>
+	<div id='scriptBoard' style="display: ">
+		<div id='editor'>正在加载代码编辑器</div>
+	</div>
+	<div>
+		<button id="scriptButton" onclick="editScript();">编写脚本</button>
+		<button onclick="appendScript();">开始运行</button>
+		FPS:<input id="fpsSetting" type="range" value="10" min="1" max="100" onchange="$('#fps').text(this.value);FPS=this.value;" style="width: 250px; height: 12px"><span id="fps" width="50px">10</span></input>
+	</div>
+	<div>
+		<p id="info">00</p>
+	</div>
+	<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var editor = ace.edit("editor");
+		editor.setTheme("ace/theme/chrome");
+		editor.getSession().setMode("ace/mode/javascript");
+		editor.setValue(example);
+	</script>
+</body>
+</html>
