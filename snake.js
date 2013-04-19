@@ -91,6 +91,18 @@ function game () {
 		}
 	}
 
+	// 复制数组=。=
+	this.getSnakeBody = function () {
+		var array = [];
+		var pos;
+		var length = this.bodyArray.length;
+		for(var i = 0; i < length; ++i) {
+			pos = this.bodyArray[i];
+			array.push({x:pos.x, y:pos.y});
+		}
+		return array;
+	}
+
 	// 二维数组，0代表空白，-1代表食物，1代表头部
 	this.getMap = function () {
 		var array = new Array();

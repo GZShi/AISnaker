@@ -128,8 +128,8 @@ body{font-size:16px;}
 </style></head><body><h1 id="ai">AI贪吃蛇说明</h1>
 
 <p>作者：<a href="http://lovep.me">GZShi</a> <br />
-版本：1.0.0 <br />
-日期：2013/04/14 <br />
+版本：1.0.1 <br />
+日期：2013/04/19 <br />
 邮箱：s@lovep.me  </p>
 
 <h3>概述</h3>
@@ -228,7 +228,18 @@ position:一个位置结构体，需要计算相对坐标的点 <br />
 <code>返回值</code> <br />
 整数类型，蛇的长度。</p>
 
-<h5 id="7">7 获取当前整个地图状态</h5>
+<h5 id="7">7 获取蛇身体坐标</h5>
+
+<blockquote>
+  <p>GAME.getSnakeBody();</p>
+</blockquote>
+
+<p><code>入　参</code> <br />
+无 <br />
+<code>返回值</code> <br />
+数组，蛇的每一节的坐标。</p>
+
+<h5 id="8">8 获取当前整个地图状态</h5>
 
 <blockquote>
   <p>GAME.getMap();</p>
@@ -244,7 +255,7 @@ position:一个位置结构体，需要计算相对坐标的点 <br />
 
 <h4 id="-6">碰撞检测相关</h4>
 
-<h5 id="8">8 检测撞墙</h5>
+<h5 id="9">9 检测撞墙</h5>
 
 <blockquote>
   <p>GAME.checkHitWall(position);</p>
@@ -255,7 +266,7 @@ position:待检测的位置坐标。 <br />
 <code>返回值</code> <br />
 碰撞返回true，否则返回false</p>
 
-<h5 id="9">9 检测碰撞蛇身体</h5>
+<h5 id="10">10 检测碰撞蛇身体</h5>
 
 <blockquote>
   <p>GAME.checkHitSnakeBody(position);</p>
@@ -266,7 +277,7 @@ position:待检测的位置坐标。 <br />
 <code>返回值</code> <br />
 接触返回true，否则返回false。注：不会与蛇头和蛇尾进行测试。</p>
 
-<h5 id="10">10 检测某坐标是否是食物</h5>
+<h5 id="11">11 检测某坐标是否是食物</h5>
 
 <blockquote>
   <p>GAME.checkHitFood(position);</p>
